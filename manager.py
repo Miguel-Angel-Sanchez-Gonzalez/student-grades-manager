@@ -4,7 +4,7 @@ while option != 6:
   try :
     print("1️⃣  Agregar un estudiante")
     print("2️⃣  Mostrar la lista de estudiantes")
-    print("3️⃣  Buscar un estudiante ")
+    print("3️⃣  Buscar un estudiante")
     print("4️⃣  Actualizar las calificaciones")
     print("5️⃣  Eliminar un estudiante ")
     print("6️⃣  Salir del programa")
@@ -25,7 +25,7 @@ while option != 6:
     students_manager[student_name] = student_grades
     print(f"\n ¡Perfecto el nuevo estudiante {student_name} se agrego al sistema!\n")
   elif option == 2 : 
-    print("\nSeleccionaste la opcion 2")
+    print("\nSeleccionaste la opcion 2 - Mostrar la lista de estudiantes\n")
     if not students_manager : 
       print("Parece que todavia no tienes ningun estudiante registrado.\n")   
     else :
@@ -37,7 +37,17 @@ while option != 6:
         print(f"Calificacion 3️⃣ :  {value[2]}")
         print(f"El promedio del alumno es de {average}\n")
   elif option == 3 : 
-    print("\nSeleccionaste la opcion 3")
+    print("\nSeleccionaste la opcion 3 - Buscar un estudiante\n")
+    find_student = input("Ingresa el nombre del alumno que deseas buscar: ")
+    if find_student in students_manager : 
+      print(f"Nombre del estudiante: {find_student}")
+      average = (students_manager[find_student][0] + students_manager[find_student][1] + students_manager[find_student][2]) / 3
+      print(f"Calificacion 1️⃣ :  {students_manager[find_student][0]}")
+      print(f"Calificacion 2️⃣ :  {students_manager[find_student][1]}")
+      print(f"Calificacion 3️⃣ :  {students_manager[find_student][2]}")
+      print(f"El promedio del alumno es de {average}\n")
+    else : 
+      print(f"El estudiante {find_student} no se encuentra registrado\n")  
   elif option == 4 :  
     print("\nSeleccionaste la opcion 4")
   elif option == 5 :
