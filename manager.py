@@ -31,7 +31,7 @@ while option != 6:
     else :
       for i, (key, value) in enumerate(students_manager.items(), start=1) :
         print(f"Estudiante numero {i}, nombre: {key}")
-        average = (value[0] + value[1] + value[2]) / 3
+        average = round((value[0] + value[1] + value[2]) / 3 , 1)
         print(f"Calificacion 1️⃣ :  {value[0]}")
         print(f"Calificacion 2️⃣ :  {value[1]}")
         print(f"Calificacion 3️⃣ :  {value[2]}")
@@ -41,7 +41,7 @@ while option != 6:
     find_student = input("Ingresa el nombre del alumno que deseas buscar: ")
     if find_student in students_manager : 
       print(f"Nombre del estudiante: {find_student}")
-      average = (students_manager[find_student][0] + students_manager[find_student][1] + students_manager[find_student][2]) / 3
+      average = round((students_manager[find_student][0] + students_manager[find_student][1] + students_manager[find_student][2]) / 3 , 1)
       print(f"Calificacion 1️⃣ :  {students_manager[find_student][0]}")
       print(f"Calificacion 2️⃣ :  {students_manager[find_student][1]}")
       print(f"Calificacion 3️⃣ :  {students_manager[find_student][2]}")
@@ -49,7 +49,19 @@ while option != 6:
     else : 
       print(f"El estudiante {find_student} no se encuentra registrado\n")  
   elif option == 4 :  
-    print("\nSeleccionaste la opcion 4")
+    print("\nSeleccionaste la opcion 4 - Actualizar las calificaciones")
+    find_student = input("Ingresa el nombre del alumno que deseas actualizar sus calificaciones: ")
+    if find_student in students_manager : 
+      print(f"Nombre del estudiante: {find_student}")
+      update_first_grade = int(input("Ingresa la primer calificacion: "))
+      update_second_grade = int(input("Ingresa la segunda calificacion: "))
+      update_third_grade = int(input("Ingresa la tercer calificacion: "))
+      update_grades = [update_first_grade,update_second_grade,update_third_grade]
+      students_manager[find_student] = update_grades
+      print(f"\n ¡Perfecto se actualizaron todas las calificaciones del estudiante {find_student}!\n")
+    else : 
+      print(f"\nEl estudiante {find_student} no se encuentra registrado\n") 
+    
   elif option == 5 :
     print("\nSeleccionaste la opcion 5") 
     
