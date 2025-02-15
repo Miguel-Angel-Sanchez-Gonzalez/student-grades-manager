@@ -17,7 +17,7 @@ while option != 6:
   
   if option == 1 :
     print("\nSeleccionaste la opcion 1 - Agregar un estudiante \n")
-    student_name = input("Ingresa el nombre del nuevo estudiante")
+    student_name = input("Ingresa el nombre del nuevo estudiante: ")
     first_grade = int(input("Ingresa su primer calificacion: "))
     second_grade = int(input("Ingresa su segunda calificacion: "))
     third_grade = int(input("Ingresa su tercer calificacion: "))
@@ -25,12 +25,21 @@ while option != 6:
     students_manager[student_name] = student_grades
     print(f"\n ¡Perfecto el nuevo estudiante {student_name} se agrego al sistema!\n")
   elif option == 2 : 
-    print("Seleccionaste la opcion 2")
-    print(students_manager)
+    print("\nSeleccionaste la opcion 2")
+    if not students_manager : 
+      print("Parece que todavia no tienes ningun estudiante registrado.\n")   
+    else :
+      for i, (key, value) in enumerate(students_manager.items(), start=1) :
+        print(f"Estudiante numero {i}, nombre: {key}")
+        average = (value[0] + value[1] + value[2]) / 3
+        print(f"Calificacion 1️⃣ :  {value[0]}")
+        print(f"Calificacion 2️⃣ :  {value[1]}")
+        print(f"Calificacion 3️⃣ :  {value[2]}")
+        print(f"El promedio del alumno es de {average}\n")
   elif option == 3 : 
-    print("Seleccionaste la opcion 3")
+    print("\nSeleccionaste la opcion 3")
   elif option == 4 :  
-    print("Seleccionaste la opcion 4")
+    print("\nSeleccionaste la opcion 4")
   elif option == 5 :
-    print("Seleccionaste la opcion 5") 
+    print("\nSeleccionaste la opcion 5") 
     
