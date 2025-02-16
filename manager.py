@@ -63,5 +63,12 @@ while option != 6:
             print(f"\nEl estudiante {find_student} no se encuentra registrado\n") 
         
     elif option == 5 :
-        print("\nSeleccionaste la opcion 5") 
+        print("\nSeleccionaste la opcion 5 - Eliminar un estudiante")
+        delete_student = input("Ingresa el nombre del alumno que deseas dar de baja: ")
+        if delete_student in students_manager : 
+            del students_manager[delete_student]
+            print(f"\n¡El estudiante {delete_student} se ha dado de baja exitosamente!\n")
+          
+        else : 
+            print(f"El estudiante {delete_student} no se encuentra registrado\n")       
       
