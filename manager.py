@@ -1,3 +1,16 @@
+def calculate_average(notes):
+    return round(sum(notes) / len(notes), 1) 
+
+def show_student(nombre):
+    if nombre in students_manager:
+        notes = students_manager[nombre]
+        final_average = calculate_average(notes)
+        print(f"Nombre del estudiante: {nombre}")
+        print("Calificaciones:", notes)
+        print(f"Promedio: {final_average}\n")
+    else:
+        print(f"\nEl estudiante {nombre} no se encuentra registrado\n")
+
 students_manager = {}
 option = 0
 while option != 6: 
@@ -18,9 +31,14 @@ while option != 6:
     if option == 1 :
         print("\nSeleccionaste la opcion 1 - Agregar un estudiante \n")
         student_name = input("Ingresa el nombre del nuevo estudiante: ")
-        first_grade = int(input("Ingresa su primer calificacion: "))
-        second_grade = int(input("Ingresa su segunda calificacion: "))
-        third_grade = int(input("Ingresa su tercer calificacion: "))
+        try :
+            first_grade = int(input("Ingresa su primer calificacion: "))
+            second_grade = int(input("Ingresa su segunda calificacion: "))
+            third_grade = int(input("Ingresa su tercer calificacion: "))
+        except ValueError :
+            print("\nNo capturaste correctamente las calificaciones, vuelve a comenzar\n")
+            continue
+        
         student_grades = [first_grade, second_grade, third_grade]
         students_manager[student_name] = student_grades
         print(f"\n ¡Perfecto el nuevo estudiante {student_name} se agrego al sistema!\n")
@@ -30,22 +48,13 @@ while option != 6:
             print("Parece que todavia no tienes ningun estudiante registrado.\n")   
         else :
             for i, (key, value) in enumerate(students_manager.items(), start=1) :
-                print(f"Estudiante numero {i}, nombre: {key}")
-                average = round((value[0] + value[1] + value[2]) / 3 , 1)
-                print(f"Calificacion 1️⃣ :  {value[0]}")
-                print(f"Calificacion 2️⃣ :  {value[1]}")
-                print(f"Calificacion 3️⃣ :  {value[2]}")
-                print(f"El promedio del alumno es de {average}\n")
+                print(f"Estudiante numero {i}")
+                show_student(key)
     elif option == 3 : 
         print("\nSeleccionaste la opcion 3 - Buscar un estudiante\n")
         find_student = input("Ingresa el nombre del alumno que deseas buscar: ")
         if find_student in students_manager : 
-            print(f"\nNombre del estudiante: {find_student}")
-            average = round((students_manager[find_student][0] + students_manager[find_student][1] + students_manager[find_student][2]) / 3 , 1)
-            print(f"Calificacion 1️⃣ :  {students_manager[find_student][0]}")
-            print(f"Calificacion 2️⃣ :  {students_manager[find_student][1]}")
-            print(f"Calificacion 3️⃣ :  {students_manager[find_student][2]}")
-            print(f"El promedio del alumno es de {average}\n")
+            show_student(find_student)
         else : 
             print(f"El estudiante {find_student} no se encuentra registrado\n")  
     elif option == 4 :  
@@ -53,9 +62,15 @@ while option != 6:
         find_student = input("Ingresa el nombre del alumno para actualizar sus calificaciones: ")
         if find_student in students_manager : 
             print(f"Nombre del estudiante: {find_student}")
-            update_first_grade = int(input("Ingresa la primer calificacion: "))
-            update_second_grade = int(input("Ingresa la segunda calificacion: "))
-            update_third_grade = int(input("Ingresa la tercer calificacion: "))
+            try : 
+                update_first_grade = int(input("Ingresa la primer calificacion: "))
+                update_second_grade = int(input("Ingresa la segunda calificacion: "))
+                update_third_grade = int(input("Ingresa la tercer calificacion: "))
+            
+            except ValueError :
+                print("\nNo capturaste correctamente las calificaciones, vuelve a comenzar\n")
+                continue
+                
             update_grades = [update_first_grade,update_second_grade,update_third_grade]
             students_manager[find_student] = update_grades
             print(f"\n¡Perfecto se actualizaron las calificaciones de: {find_student}!\n")
@@ -68,7 +83,5 @@ while option != 6:
         if delete_student in students_manager : 
             del students_manager[delete_student]
             print(f"\n¡El estudiante {delete_student} se ha dado de baja exitosamente!\n")
-          
         else : 
-            print(f"El estudiante {delete_student} no se encuentra registrado\n")       
-      
+            print(f"El estudiante {delete_student} no se encuentra registrado\n")     
